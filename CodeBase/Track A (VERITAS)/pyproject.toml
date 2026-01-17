@@ -1,0 +1,77 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kdsh-narrative-auditor"
+version = "1.0.0"
+description = "Constraint-Driven Narrative Auditor for KDSH 2026 - 5-layer pipeline for narrative consistency verification"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+    {name = "Animesh Raj", email = "animesh@example.com"}
+]
+keywords = ["rag", "nlp", "narrative", "verification", "langgraph", "pathway"]
+
+dependencies = [
+    # Core ML / NLP
+    "openai>=1.0.0",
+    "transformers>=4.35.0",
+    "sentence-transformers>=2.2.0",
+    "torch>=2.0.0",
+    
+    # Retrieval Frameworks
+    # Note: raptor-rag and hipporag may need to be installed from GitHub
+    # pip install git+https://github.com/profintegra/raptor-rag.git
+    # pip install git+https://github.com/OSU-NLP-Group/HippoRAG.git
+    
+    # Workflow Orchestration
+    "langchain>=0.1.0",
+    "langchain-openai>=0.0.5",
+    "langgraph>=0.0.20",
+    
+    # Data Orchestration & API
+    "pathway>=0.8.0",
+    
+    # Data Validation
+    "pydantic>=2.0.0",
+    "pydantic-settings>=2.0.0",
+    
+    # Utilities
+    "python-dotenv>=1.0.0",
+    "httpx>=0.25.0",
+    "tenacity>=8.2.0",
+    "numpy>=1.24.0",
+    "pandas>=2.0.0",
+    "tqdm>=4.65.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.5.0",
+]
+
+[project.scripts]
+kdsh-auditor = "kdsh.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.black]
+line-length = 100
+target-version = ["py310", "py311", "py312"]
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I", "W"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_ignores = true

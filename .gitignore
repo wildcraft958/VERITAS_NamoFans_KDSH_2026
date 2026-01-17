@@ -1,0 +1,90 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Cache
+.cache/
+*.pkl
+*.pickle
+
+# Model weights (too large for git)
+*.pt
+*.pth
+*.bin
+*.onnx
+*.safetensors
+
+# Data files (keep structure, exclude large files)
+*.parquet
+*.arrow
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Secrets
+.env.local
+.env.*.local
+secrets/
+credentials/
+
+# Large outputs
+evaluation_output/
+output/
+outputs/
+
+# External framework caches
+external_frameworks/**/wandb/
+external_frameworks/**/.cache/
+external_frameworks/**/reproduce/output*/

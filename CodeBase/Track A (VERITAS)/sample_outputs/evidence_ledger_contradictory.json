@@ -1,0 +1,211 @@
+{
+  "backstory_id": "sample_059",
+  "novel_id": "castaways_thalcave",
+  "novel_title": "In Search of the Castaways",
+  "processing_timestamp": "2026-01-15T14:23:45Z",
+  "final_verdict": {
+    "prediction": 0,
+    "verdict_label": "CONTRADICTORY",
+    "confidence": 0.91,
+    "triggered_rule": "Rule 1: Hard Contradiction"
+  },
+  "evidence_summary": {
+    "total_constraints": 6,
+    "supporting_count": 2,
+    "contradicting_count": 3,
+    "missing_count": 1
+  },
+  "backstory_claim": "Thalcave returned to the mountains after reading the avalanche warning signs. His mountain climbing skills, learned from his alpine heritage, allowed him to survive by scaling the cliff face while others perished below.",
+  "atomic_facts_extracted": [
+    {
+      "id": "F1",
+      "text": "Thalcave returned to the mountains",
+      "source_sentence": "Thalcave returned to the mountains after reading the avalanche warning signs."
+    },
+    {
+      "id": "F2", 
+      "text": "Thalcave read avalanche warning signs",
+      "source_sentence": "Thalcave returned to the mountains after reading the avalanche warning signs."
+    },
+    {
+      "id": "F3",
+      "text": "Thalcave has mountain climbing skills",
+      "source_sentence": "His mountain climbing skills, learned from his alpine heritage, allowed him to survive."
+    },
+    {
+      "id": "F4",
+      "text": "Thalcave has alpine heritage",
+      "source_sentence": "His mountain climbing skills, learned from his alpine heritage, allowed him to survive."
+    },
+    {
+      "id": "F5",
+      "text": "Thalcave survived by scaling the cliff face",
+      "source_sentence": "allowed him to survive by scaling the cliff face while others perished below."
+    },
+    {
+      "id": "F6",
+      "text": "Others perished below the cliff",
+      "source_sentence": "allowed him to survive by scaling the cliff face while others perished below."
+    }
+  ],
+  "constraint_verdicts": [
+    {
+      "constraint_id": "C1",
+      "claim": "Thalcave returned to the mountains",
+      "category": "LOCATION",
+      "historian_verdict": {
+        "status": "CONTRADICTED",
+        "confidence": 0.94,
+        "key_evidence": [
+          {
+            "text": "Thalcave is described as a 'Patagonian of the plains' with 'strong attachment to his homeland' who 'refuses to leave the prairies'",
+            "chapter": "Chapter 18",
+            "relevance_score": 0.96
+          }
+        ],
+        "reasoning": "The character is explicitly defined as a man of the plains who refuses to leave the prairies. Returning to and living in the mountains contradicts this fundamental character attribute."
+      },
+      "simulator_verdict": {
+        "alignment": 0.21,
+        "persona_conflict": "Character's core identity is tied to the prairies, not mountains"
+      },
+      "final_status": "CONTRADICTED",
+      "rule_applied": "Rule 2: Attribute Exclusivity"
+    },
+    {
+      "constraint_id": "C2",
+      "claim": "Thalcave read avalanche warning signs",
+      "category": "SKILL/KNOWLEDGE",
+      "historian_verdict": {
+        "status": "CONTRADICTED",
+        "confidence": 0.87,
+        "key_evidence": [
+          {
+            "text": "The avalanche is described as a 'catastrophic event' that caused the characters to 'descend violently' - a sudden disaster, not a predicted event",
+            "chapter": "Chapter 12",
+            "relevance_score": 0.89
+          }
+        ],
+        "reasoning": "The novel describes the avalanche as a surprise catastrophe, not something that was predicted or read in advance."
+      },
+      "simulator_verdict": {
+        "alignment": 0.35,
+        "persona_conflict": "No evidence of avalanche prediction abilities in established character traits"
+      },
+      "final_status": "CONTRADICTED",
+      "rule_applied": "Rule 3: Factual Negation"
+    },
+    {
+      "constraint_id": "C3",
+      "claim": "Thalcave has alpine heritage",
+      "category": "ORIGIN",
+      "historian_verdict": {
+        "status": "CONTRADICTED",
+        "confidence": 0.92,
+        "key_evidence": [
+          {
+            "text": "Thalcave is identified as a 'Patagonian Indian' deeply connected to the prairies",
+            "chapter": "Chapter 14",
+            "relevance_score": 0.94
+          }
+        ],
+        "reasoning": "Patagonian prairie heritage is mutually exclusive with alpine heritage."
+      },
+      "simulator_verdict": {
+        "alignment": 0.18
+      },
+      "final_status": "CONTRADICTED",
+      "rule_applied": "Rule 2: Attribute Exclusivity"
+    },
+    {
+      "constraint_id": "C4",
+      "claim": "Thalcave has mountain climbing skills",
+      "category": "SKILL",
+      "historian_verdict": {
+        "status": "NEUTRAL",
+        "confidence": 0.55,
+        "key_evidence": [],
+        "reasoning": "The novel does not specifically address climbing skills. Neutral under Open World Assumption."
+      },
+      "simulator_verdict": {
+        "alignment": 0.45
+      },
+      "final_status": "INSUFFICIENT_EVIDENCE",
+      "rule_applied": "Rule 4: Open World Assumption"
+    },
+    {
+      "constraint_id": "C5",
+      "claim": "Thalcave survived by scaling cliff face",
+      "category": "ACTION",
+      "historian_verdict": {
+        "status": "SUPPORTING",
+        "confidence": 0.72,
+        "key_evidence": [
+          {
+            "text": "The text mentions Thalcave's exceptional physical abilities and survival instincts",
+            "chapter": "Chapter 15",
+            "relevance_score": 0.68
+          }
+        ],
+        "reasoning": "While specific cliff scaling is not mentioned, survival abilities are consistent."
+      },
+      "simulator_verdict": {
+        "alignment": 0.74
+      },
+      "final_status": "WEAKLY_SUPPORTED",
+      "rule_applied": "Rule 4: Open World Assumption"
+    },
+    {
+      "constraint_id": "C6",
+      "claim": "Others perished below the cliff",
+      "category": "EVENT",
+      "historian_verdict": {
+        "status": "MISSING_EVIDENCE",
+        "confidence": 0.0,
+        "key_evidence": [],
+        "reasoning": "No evidence of other characters perishing in the avalanche event."
+      },
+      "simulator_verdict": {
+        "alignment": 0.50
+      },
+      "final_status": "UNVERIFIABLE",
+      "rule_applied": "Rule 4: Open World Assumption"
+    }
+  ],
+  "reasoning_chain": [
+    "Extracted 6 atomic facts from backstory using FActScore decomposition",
+    "Built RAPTOR tree index with 847 leaf nodes and 4 summary levels",
+    "Constructed HippoRAG knowledge graph with 156 entities and 423 relationships",
+    "Retrieved evidence for each constraint using dual retrieval (RAPTOR + HippoRAG)",
+    "Historian classified 3 CONTRADICTING, 1 SUPPORTING, 1 NEUTRAL, 1 MISSING",
+    "Simulator persona alignment averaged 0.41 across all constraints",
+    "Analyzed 6 constraints with 2 supporting, 3 contradicting, and 1 missing evidence signals",
+    "Rule 1 applies: Found 3 hard contradictions (weight >= 0.7)"
+  ],
+  "adjudication_rules_applied": {
+    "rule_1_hard_contradiction": {
+      "triggered": true,
+      "contradictions_found": 3,
+      "threshold": 0.7,
+      "max_weight": 0.94
+    },
+    "rule_2_multiple_missing": {
+      "triggered": false,
+      "high_impact_missing": 1,
+      "required": 2
+    },
+    "rule_3_low_persona": {
+      "triggered": false,
+      "avg_alignment": 0.41,
+      "threshold": 0.3
+    },
+    "rule_4_strong_support": {
+      "triggered": false,
+      "supporting_count": 2,
+      "required": 3
+    },
+    "rule_5_default": {
+      "triggered": false
+    }
+  }
+}

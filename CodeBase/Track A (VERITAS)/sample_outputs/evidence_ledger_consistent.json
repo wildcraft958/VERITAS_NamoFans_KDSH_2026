@@ -1,0 +1,166 @@
+{
+  "backstory_id": "sample_060",
+  "novel_id": "castaways_thalcave",
+  "novel_title": "In Search of the Castaways",
+  "processing_timestamp": "2026-01-15T14:25:12Z",
+  "final_verdict": {
+    "prediction": 1,
+    "verdict_label": "CONSISTENT",
+    "confidence": 0.87,
+    "triggered_rule": "Rule 4: Strong Support"
+  },
+  "evidence_summary": {
+    "total_constraints": 5,
+    "supporting_count": 4,
+    "contradicting_count": 0,
+    "missing_count": 1
+  },
+  "backstory_claim": "Thalcave was raised by an old shepherd who died shielding him from horse-thieves. The shepherd gave him a mission to 'stand between civilisation and the wild.' This early trauma forged his protective instincts.",
+  "atomic_facts_extracted": [
+    {
+      "id": "F1",
+      "text": "Thalcave was raised by an old shepherd",
+      "source_sentence": "Thalcave was raised by an old shepherd who died shielding him from horse-thieves."
+    },
+    {
+      "id": "F2",
+      "text": "The shepherd died shielding him from horse-thieves",
+      "source_sentence": "Thalcave was raised by an old shepherd who died shielding him from horse-thieves."
+    },
+    {
+      "id": "F3",
+      "text": "The shepherd gave him a mission to stand between civilisation and the wild",
+      "source_sentence": "The shepherd gave him a mission to 'stand between civilisation and the wild.'"
+    },
+    {
+      "id": "F4",
+      "text": "This early trauma forged his protective instincts",
+      "source_sentence": "This early trauma forged his protective instincts."
+    }
+  ],
+  "constraint_verdicts": [
+    {
+      "constraint_id": "C1",
+      "claim": "Thalcave was raised by an old shepherd",
+      "category": "ORIGIN",
+      "historian_verdict": {
+        "status": "NEUTRAL",
+        "confidence": 0.0,
+        "key_evidence": [],
+        "reasoning": "The novel is silent regarding Thalcave's childhood or upbringing. Under Rule 4 (Open World Assumption), silence permits this backstory detail."
+      },
+      "simulator_verdict": {
+        "alignment": 0.82,
+        "persona_alignment": "Shepherd upbringing consistent with prairie expertise"
+      },
+      "final_status": "PERMITTED",
+      "rule_applied": "Rule 4: Open World Assumption"
+    },
+    {
+      "constraint_id": "C2",
+      "claim": "The shepherd died protecting Thalcave from horse-thieves",
+      "category": "EVENT",
+      "historian_verdict": {
+        "status": "NEUTRAL",
+        "confidence": 0.0,
+        "key_evidence": [],
+        "reasoning": "Context is silent regarding specific childhood events. The existence of 'Gauchos' described as bandits supports plausibility."
+      },
+      "simulator_verdict": {
+        "alignment": 0.85
+      },
+      "final_status": "PERMITTED",
+      "rule_applied": "Rule 4: Open World Assumption"
+    },
+    {
+      "constraint_id": "C3",
+      "claim": "Mission to stand between civilization and the wild",
+      "category": "MOTIVATION",
+      "historian_verdict": {
+        "status": "SUPPORTING",
+        "confidence": 0.91,
+        "key_evidence": [
+          {
+            "text": "Thalcave acts as a guide and protector for European travelers against the dangers of the Pampas",
+            "chapter": "Various",
+            "relevance_score": 0.93
+          },
+          {
+            "text": "His role in the novel—guiding civilization (the travelers) through the wild (Patagonia)—is thematic evidence for this mission",
+            "chapter": "Chapter 14-20",
+            "relevance_score": 0.89
+          }
+        ],
+        "reasoning": "The character's actual behavior in the novel directly embodies this stated mission."
+      },
+      "simulator_verdict": {
+        "alignment": 0.94,
+        "persona_alignment": "Perfect thematic consistency with character arc"
+      },
+      "final_status": "STRONGLY_SUPPORTED",
+      "rule_applied": "Direct Evidence Match"
+    },
+    {
+      "constraint_id": "C4",
+      "claim": "Early trauma forged protective instincts",
+      "category": "TRAIT_ORIGIN",
+      "historian_verdict": {
+        "status": "SUPPORTING",
+        "confidence": 0.88,
+        "key_evidence": [
+          {
+            "text": "Thalcave is described as 'selfless' with 'bravery' and protective behavior toward Robert",
+            "chapter": "Chapter 16",
+            "relevance_score": 0.91
+          },
+          {
+            "text": "He demonstrates strong protective instincts throughout the expedition",
+            "chapter": "Various",
+            "relevance_score": 0.86
+          }
+        ],
+        "reasoning": "The backstory provides a motivational origin for Thalcave's established protective behavior in the novel."
+      },
+      "simulator_verdict": {
+        "alignment": 0.89
+      },
+      "final_status": "SUPPORTED",
+      "rule_applied": "Trait-Origin Consistency"
+    }
+  ],
+  "reasoning_chain": [
+    "Extracted 4 atomic facts from backstory using FActScore decomposition",
+    "Built RAPTOR tree index with 847 leaf nodes and 4 summary levels",
+    "Constructed HippoRAG knowledge graph with 156 entities and 423 relationships",
+    "Retrieved evidence for each constraint using dual retrieval",
+    "Historian classified 2 SUPPORTING, 0 CONTRADICTING, 2 NEUTRAL",
+    "Simulator persona alignment averaged 0.88 across all constraints",
+    "Analyzed 4 constraints with 4 supporting, 0 contradicting, and 0 missing evidence signals",
+    "Rule 4 applies: 4 supporting evidence, no contradictions, avg persona alignment 0.88"
+  ],
+  "adjudication_rules_applied": {
+    "rule_1_hard_contradiction": {
+      "triggered": false,
+      "contradictions_found": 0,
+      "threshold": 0.7
+    },
+    "rule_2_multiple_missing": {
+      "triggered": false,
+      "high_impact_missing": 0
+    },
+    "rule_3_low_persona": {
+      "triggered": false,
+      "avg_alignment": 0.88,
+      "threshold": 0.3
+    },
+    "rule_4_strong_support": {
+      "triggered": true,
+      "supporting_count": 4,
+      "required": 3,
+      "all_alignments_above_threshold": true
+    },
+    "rule_5_default": {
+      "triggered": false
+    }
+  }
+}

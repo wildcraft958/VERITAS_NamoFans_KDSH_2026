@@ -1,0 +1,31 @@
+# Core framework
+torch>=2.0.0
+transformers>=4.35.0
+numpy>=1.24.0
+pandas>=2.0.0
+scikit-learn>=1.3.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+tqdm>=4.65.0
+Pillow>=10.0.0
+networkx>=3.0
+accelerate>=0.25.0
+datasets>=2.14.0
+
+# SOTA NLI - DeBERTa-v3
+# sentence-transformers for CrossEncoder
+sentence-transformers>=2.2.0
+
+
+# SpaCy for NER and dependency parsing
+spacy>=3.6.0
+spacy-transformers>=1.3.0
+
+# For cross-encoder NLI if sentence-transformers not available
+# Uses same transformers library
+
+# Global Coreference Resolution
+fastcoref>=2.1.6
+
+# Pathway for Streaming Ingestion (Optional)
+# pathway-python>=0.4.0  # Commented out - not available on PyPI, see README for manual setup
