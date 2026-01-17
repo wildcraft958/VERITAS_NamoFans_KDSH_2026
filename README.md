@@ -13,19 +13,19 @@
 
 ---
 
-## 📋 Quick Navigation for Judges
+## Quick Navigation for Judges
 
 | Resource | Description |
 |----------|-------------|
-| 📄 [Final Report](NamoFans_KDSH_2026_Final_Report.pdf) | Complete technical documentation |
-| 📄 [Extended Report](NamoFans_KDSH_2026_Extended_Technical_Report.pdf) | Detailed appendices and analysis |
-| 📊 [Results](results.csv) | Full evaluation outputs |
-| 💻 [Track A Code](CodeBase/Track%20A%20(VERITAS)/) | **Primary submission** - VERITAS implementation |
-| 🧪 [Track B Code](CodeBase/Track%20B%20(BDH%20Experiments)/) | Experimental BDH exploration |
+| [Final Report](NamoFans_KDSH_2026_Final_Report.pdf) | Complete technical documentation |
+| [Extended Report](NamoFans_KDSH_2026_Extended_Technical_Report.pdf) | Detailed appendices and analysis |
+| [Results](results.csv) | Full evaluation outputs |
+| [Track A Code](Track%20A%20(VERITAS)/) | **Primary submission** - VERITAS implementation |
+| [Track B Code](Track%20B%20(BDH%20Experiments)/) | Experimental BDH exploration |
 
 ---
 
-## 🎯 The Challenge
+## The Challenge
 
 **Given**: A 100,000-word novel + 2-5k word character backstory
 
@@ -35,7 +35,7 @@
 
 ---
 
-## 🏆 Results Summary
+## Results Summary
 
 | Model | Accuracy | Notes |
 |-------|----------|-------|
@@ -45,101 +45,106 @@
 | **VERITAS (Track A)** | **83%** | **+18pp improvement** |
 
 **Key Metrics**:
-- 🎯 **83% Accuracy** — Exceeds human-level gap
-- 🔬 **91% Precision** — Minimal false positives  
-- ⚡ **8.5s Inference** — Cloud-native, no GPU required
-- 📚 **Zero Training** — Pre-trained models only
+- **83% Accuracy** — Exceeds human-level gap
+- **91% Precision** — Minimal false positives  
+- **8.5s Inference** — Cloud-native, no GPU required
+- **Zero Training** — Pre-trained models only
 
 ---
 
-## 🏗️ Architecture Overview
+## Architecture Overview
 
 VERITAS uses a **5-layer constraint-driven pipeline** that mirrors human investigative reasoning:
 
 ```
-┌─────────────────────────────────────────────────────────────────────┐
-│                         VERITAS Pipeline                            │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                     │
-│  ┌─────────────┐    ┌─────────────┐    ┌─────────────────────────┐  │
-│  │  BACKSTORY  │    │    NOVEL    │    │     LAYER 1             │  │
-│  │   (Input)   │───▶│   (Input)   │───▶│  Atomic Decomposition   │  │
-│  └─────────────┘    └─────────────┘    │  (FActScore)            │  │
-│                                        └───────────┬─────────────┘  │
-│                                                    ▼                │
-│                                        ┌─────────────────────────┐  │
-│                                        │     LAYER 2             │  │
-│                                        │  Semantic Hierarchy     │  │
-│                                        │  (RAPTOR Tree)          │  │
-│                                        └───────────┬─────────────┘  │
-│                                                    ▼                │
-│                                        ┌─────────────────────────┐  │
-│                                        │     LAYER 3             │  │
-│                                        │  Relational Entanglement│  │
-│                                        │  (HippoRAG Graph)       │  │
-│                                        └───────────┬─────────────┘  │
-│                                                    ▼                │
-│                          ┌─────────────────────────┴──────────────┐ │
-│                          │           LAYER 4                      │ │
-│                          │      Dual-Vector Retrieval             │ │
-│                          │  ┌──────────┐    ┌──────────────┐      │ │
-│                          │  │Historian │    │  Simulator   │      │ │
-│                          │  │ (Macro)  │    │   (Micro)    │      │ │
-│                          │  └────┬─────┘    └──────┬───────┘      │ │
-│                          └───────┴─────────────────┴──────────────┘ │
-│                                         │                           │
-│                                         ▼                           │
-│                          ┌─────────────────────────────────────────┐│
-│                          │           LAYER 5                       ││
-│                          │    Conservative Adjudication            ││
-│                          │    ┌─────────────────────────────┐      ││
-│                          │    │      Evidence Ledger        │      ││
-│                          │    │  ┌─────┬────────┬────────┐  │      ││
-│                          │    │  │Claim│Verdict │Citation│  │      ││
-│                          │    │  └─────┴────────┴────────┘  │      ││
-│                          │    └─────────────────────────────┘      ││
-│                          │              ▼                          ││
-│                          │    FINAL VERDICT + CONFIDENCE           ││
-│                          └─────────────────────────────────────────┘│
-└─────────────────────────────────────────────────────────────────────┘
++---------------------------------------------------------------------+
+|                         VERITAS Pipeline                            |
++---------------------------------------------------------------------+
+|                                                                     |
+|  +-----------+    +-----------+    +-------------------------+      |
+|  | BACKSTORY |    |   NOVEL   |    |       LAYER 1           |      |
+|  |  (Input)  |--->|  (Input)  |--->|  Atomic Decomposition   |      |
+|  +-----------+    +-----------+    |  (FActScore)            |      |
+|                                    +-----------+-------------+      |
+|                                                |                    |
+|                                                v                    |
+|                                    +-------------------------+      |
+|                                    |       LAYER 2           |      |
+|                                    |  Semantic Hierarchy     |      |
+|                                    |  (RAPTOR Tree)          |      |
+|                                    +-----------+-------------+      |
+|                                                |                    |
+|                                                v                    |
+|                                    +-------------------------+      |
+|                                    |       LAYER 3           |      |
+|                                    |  Relational Entanglement|      |
+|                                    |  (HippoRAG Graph)       |      |
+|                                    +-----------+-------------+      |
+|                                                |                    |
+|                                                v                    |
+|                          +---------------------+-------------------+|
+|                          |           LAYER 4                       ||
+|                          |      Dual-Vector Retrieval              ||
+|                          |  +----------+    +--------------+       ||
+|                          |  |Historian |    |  Simulator   |       ||
+|                          |  | (Macro)  |    |   (Micro)    |       ||
+|                          |  +----+-----+    +------+-------+       ||
+|                          +-------+-----------------+---------------+|
+|                                  |                 |                |
+|                                  v                 v                |
+|                          +-------------------------------------+    |
+|                          |           LAYER 5                   |    |
+|                          |    Conservative Adjudication        |    |
+|                          |    +---------------------------+    |    |
+|                          |    |      Evidence Ledger      |    |    |
+|                          |    | +-----+--------+--------+ |    |    |
+|                          |    | |Claim|Verdict |Citation| |    |    |
+|                          |    | +-----+--------+--------+ |    |    |
+|                          |    +---------------------------+    |    |
+|                          |              |                      |    |
+|                          |              v                      |    |
+|                          |    FINAL VERDICT + CONFIDENCE       |    |
+|                          +-------------------------------------+    |
++---------------------------------------------------------------------+
 ```
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
 ```
 NamoFans_KDSH_2026/
-│
-├── 📄 NamoFans_KDSH_2026_Final_Report.pdf      # Primary documentation
-├── 📄 NamoFans_KDSH_2026_Extended_Technical_Report.pdf
-├── 📊 results.csv                              # Evaluation results
-│
-└── 📁 CodeBase/
-    │
-    ├── 📁 Track A (VERITAS)/                   # ⭐ PRIMARY SUBMISSION
-    │   ├── 📁 src/kdsh/                        # Core implementation
-    │   │   ├── layer1/                         # Atomic fact extraction
-    │   │   ├── layer2/                         # Semantic hierarchy
-    │   │   ├── layer3/                         # Relational graphs
-    │   │   ├── layer4/                         # Evidence aggregation
-    │   │   ├── layer5/                         # Adjudication engine
-    │   │   └── workflow/                       # LangGraph orchestration
-    │   ├── 📁 external_frameworks/             # Reference implementations
-    │   │   ├── FActScore/                      # EMNLP 2023
-    │   │   ├── raptor/                         # ICLR 2024
-    │   │   └── HippoRAG/                       # NeurIPS 2024
-    │   ├── 📁 tests/                           # Test suite
-    │   └── 📁 sample_outputs/                  # Example evidence ledgers
-    │
-    └── 📁 Track B (BDH Experiments)/           # Experimental exploration
-        ├── 📁 src/                             # BDH implementation
-        └── 📁 research/                        # BDH papers & experiments
+|
++-- README.md                                    # This file
++-- NamoFans_KDSH_2026_Final_Report.pdf          # Primary documentation
++-- NamoFans_KDSH_2026_Extended_Technical_Report.pdf
++-- results.csv                                  # Evaluation results
+|
++-- Track A (VERITAS)/                           # PRIMARY SUBMISSION
+|   +-- README.md                                # Track A documentation
+|   +-- src/kdsh/                                # Core implementation
+|   |   +-- layer1/                              # Atomic fact extraction
+|   |   +-- layer2/                              # Semantic hierarchy
+|   |   +-- layer3/                              # Relational graphs
+|   |   +-- layer4/                              # Evidence aggregation
+|   |   +-- layer5/                              # Adjudication engine
+|   |   +-- workflow/                            # LangGraph orchestration
+|   +-- external_frameworks/                     # Reference implementations
+|   |   +-- FActScore/                           # EMNLP 2023
+|   |   +-- raptor/                              # ICLR 2024
+|   |   +-- HippoRAG/                            # NeurIPS 2024
+|   +-- tests/                                   # Test suite
+|   +-- sample_outputs/                          # Example evidence ledgers
+|
++-- Track B (BDH Experiments)/                   # Experimental exploration
+    +-- README.md                                # Track B documentation
+    +-- src/                                     # BDH implementation
+    +-- research/                                # BDH papers & experiments
 ```
 
 ---
 
-## 🔬 The 5 Layers Explained
+## The 5 Layers Explained
 
 ### Layer 1: Atomic Decomposition
 **Based on**: FActScore (Min et al., EMNLP 2023)
@@ -147,9 +152,10 @@ NamoFans_KDSH_2026/
 Breaks backstory into testable atomic claims:
 ```
 "Born in 1990, Alice grew up in a small town"
-    ↓
-• Born in 1990
-• Grew up in a small town
+    |
+    v
+* Born in 1990
+* Grew up in a small town
 ```
 
 ### Layer 2: Semantic Hierarchy  
@@ -172,17 +178,17 @@ Applies 5 asymmetric decision rules:
 
 | Priority | Rule | Action |
 |----------|------|--------|
-| 1 | Hard contradiction found | → REJECT |
-| 2 | ≥2 missing critical evidence | → REJECT |
-| 3 | Low persona alignment | → REJECT |
-| 4 | Strong multi-source support | → ACCEPT |
-| 5 | Insufficient evidence | → REJECT (conservative) |
+| 1 | Hard contradiction found | REJECT |
+| 2 | >=2 missing critical evidence | REJECT |
+| 3 | Low persona alignment | REJECT |
+| 4 | Strong multi-source support | ACCEPT |
+| 5 | Insufficient evidence | REJECT (conservative) |
 
 > **Design Philosophy**: *One contradiction is fatal. It's easier to prove false than true.*
 
 ---
 
-## 🧪 Track B: BDH Experiments
+## Track B: BDH Experiments
 
 Before VERITAS, we explored a **biologically-inspired hypothesis**:
 
@@ -194,7 +200,7 @@ Before VERITAS, we explored a **biologically-inspired hypothesis**:
 
 ---
 
-## 📚 Key References
+## Key References
 
 1. **Sinha et al.** (PRELUDE, 2025) — Benchmark dataset
 2. **Min et al.** (FActScore, EMNLP 2023) — Atomic claim decomposition
@@ -204,10 +210,10 @@ Before VERITAS, we explored a **biologically-inspired hypothesis**:
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
-cd "CodeBase/Track A (VERITAS)"
+cd "Track A (VERITAS)"
 
 # Install
 pip install -e .
@@ -224,7 +230,7 @@ python -m kdsh.main --batch train.csv --novels-dir Books/ --output results.csv
 
 ---
 
-## 👥 Team NaMoFans
+## Team NaMoFans
 
 KDSH 2026 Track A Final Submission
 
