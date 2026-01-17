@@ -18,7 +18,7 @@ class TestLayer1AtomicDecomposition:
         """Test basic fact extraction from backstory text."""
         logger.info("Testing basic fact extraction")
         
-        from kdsh.layer1.factscore import FactExtractor
+        from core.layer1.factscore import FactExtractor
         
         extractor = FactExtractor()
         backstory = "Robert was born in 1850. He grew up in the mountains."
@@ -36,7 +36,7 @@ class TestLayer1AtomicDecomposition:
         """Test handling of empty backstory."""
         logger.info("Testing empty backstory handling")
         
-        from kdsh.layer1.factscore import FactExtractor
+        from core.layer1.factscore import FactExtractor
         
         extractor = FactExtractor()
         
@@ -50,7 +50,7 @@ class TestLayer1AtomicDecomposition:
         """Test constraint graph construction from atomic facts."""
         logger.info("Testing constraint graph creation")
         
-        from kdsh.layer1.constraint_graph import AtomicFact, ConstraintGraph, Constraint, ConstraintType
+        from core.layer1.constraint_graph import AtomicFact, ConstraintGraph, Constraint, ConstraintType
         
         facts = [
             AtomicFact(id="F1", text="Robert was born in 1850", source_sentence="Test"),
@@ -76,7 +76,7 @@ class TestLayer2DualRetrieval:
         """Test RAPTOR tree construction from novel text."""
         logger.info("Testing RAPTOR tree building")
         
-        from kdsh.layer2.raptor_index import RAPTORIndex
+        from core.layer2.raptor_index import RAPTORIndex
         
         with patch.object(RAPTORIndex, '_summarize', return_value="Test summary"):
             index = RAPTORIndex(chunk_size=100)
@@ -89,7 +89,7 @@ class TestLayer2DualRetrieval:
         """Test HippoRAG entity and relationship extraction."""
         logger.info("Testing HippoRAG entity extraction")
         
-        from kdsh.layer2.hipporag_index import HippoRAGIndex
+        from core.layer2.hipporag_index import HippoRAGIndex
         
         index = HippoRAGIndex()
         assert index is not None
@@ -100,7 +100,7 @@ class TestLayer2DualRetrieval:
         """Test unified retrieval combining RAPTOR and HippoRAG."""
         logger.info("Testing unified retriever")
         
-        from kdsh.layer2.unified_retriever import DualRetriever
+        from core.layer2.unified_retriever import DualRetriever
         
         with patch.object(DualRetriever, '__init__', return_value=None):
             retriever = DualRetriever.__new__(DualRetriever)
@@ -118,7 +118,7 @@ class TestLayer3ParallelVerification:
         """Test Historian evidence classification."""
         logger.info("Testing Historian evidence classification")
         
-        from kdsh.layer3.historian import Historian, EvidenceStatus
+        from core.layer3.historian import Historian, EvidenceStatus
         
         historian = Historian()
         
@@ -137,7 +137,7 @@ class TestLayer3ParallelVerification:
         """Test Simulator persona creation from backstory."""
         logger.info("Testing Simulator persona adoption")
         
-        from kdsh.layer3.simulator import Simulator
+        from core.layer3.simulator import Simulator
         
         simulator = Simulator()
         
@@ -159,7 +159,7 @@ class TestLayer4EvidenceLedger:
         """Test creating ledger entries."""
         logger.info("Testing ledger entry creation")
         
-        from kdsh.layer4.ledger import EvidenceLedger, LedgerEntry
+        from core.layer4.ledger import EvidenceLedger, LedgerEntry
         
         ledger = EvidenceLedger()
         
@@ -187,8 +187,8 @@ class TestLayer5Adjudication:
         """Test Rule 1: Hard contradiction triggers rejection."""
         logger.info("Testing Rule 1: Hard Contradiction")
         
-        from kdsh.layer5.adjudicator import ConservativeAdjudicator, FinalVerdict
-        from kdsh.layer4.ledger import LedgerEntry
+        from core.layer5.adjudicator import ConservativeAdjudicator, FinalVerdict
+        from core.layer4.ledger import LedgerEntry
         
         adjudicator = ConservativeAdjudicator(contradiction_threshold=0.7)
         
@@ -210,7 +210,7 @@ class TestLayer5Adjudication:
         """Test Rule 4: Strong support triggers acceptance."""
         logger.info("Testing Rule 4: Strong Support")
         
-        from kdsh.layer5.adjudicator import ConservativeAdjudicator
+        from core.layer5.adjudicator import ConservativeAdjudicator
         
         adjudicator = ConservativeAdjudicator(
             contradiction_threshold=0.7,
@@ -235,7 +235,7 @@ class TestLayer5Adjudication:
         """Test Rule 5: Default conservative rejection."""
         logger.info("Testing Rule 5: Default Conservative Rejection")
         
-        from kdsh.layer5.adjudicator import ConservativeAdjudicator
+        from core.layer5.adjudicator import ConservativeAdjudicator
         
         adjudicator = ConservativeAdjudicator(support_count_threshold=10)
         

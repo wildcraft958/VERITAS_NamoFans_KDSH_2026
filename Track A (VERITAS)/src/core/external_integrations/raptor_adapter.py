@@ -205,7 +205,7 @@ class RAPTORTreeBuilder:
     def _get_embedding(self, text: str) -> List[float]:
         """Get embedding for text."""
         try:
-            from kdsh.models import get_embedding
+            from core.models import get_embedding
             return get_embedding(text)
         except:
             return [0.0] * 1536  # Placeholder
@@ -213,7 +213,7 @@ class RAPTORTreeBuilder:
     def _summarize(self, texts: List[str]) -> str:
         """Generate a summary of the input texts (RAPTOR methodology)."""
         try:
-            from kdsh.models import llm_complete
+            from core.models import llm_complete
             
             combined = "\n\n".join(texts)
             
@@ -280,7 +280,7 @@ class RAPTORTreeRetriever:
             List of (node, similarity_score) tuples
         """
         try:
-            from kdsh.models import get_embedding
+            from core.models import get_embedding
             query_embedding = get_embedding(query)
         except:
             return []

@@ -7,7 +7,7 @@ Based on: https://huggingface.co/facebook/bart-large-mnli
 
 from functools import lru_cache
 
-from kdsh.layer1.constraint_graph import AtomicFact, ConstraintType
+from core.layer1.constraint_graph import AtomicFact, ConstraintType
 
 
 # Lazy loading for transformers to avoid slow imports

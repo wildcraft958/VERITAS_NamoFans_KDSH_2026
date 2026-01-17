@@ -9,8 +9,8 @@ import json
 import re
 from dataclasses import dataclass
 
-from kdsh.layer1.constraint_graph import AtomicFact
-from kdsh.models import llm_complete
+from core.layer1.constraint_graph import AtomicFact
+from core.models import llm_complete
 
 
 FACT_EXTRACTION_PROMPT = """You are an expert at extracting atomic facts from text.

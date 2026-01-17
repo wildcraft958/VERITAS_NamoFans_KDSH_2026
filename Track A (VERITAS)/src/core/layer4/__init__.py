@@ -1,6 +1,6 @@
 """Layer 4: Evidence Ledger Aggregation."""
 
-from kdsh.layer4.ledger import (
+from core.layer4.ledger import (
     EvidenceEntry,
     MissingEvidence,
     LedgerEntry,

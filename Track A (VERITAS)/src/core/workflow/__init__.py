@@ -1,7 +1,7 @@
 """Workflow: LangGraph Integration."""
 
-from kdsh.workflow.state import NarrativeState
-from kdsh.workflow.graph import (
+from core.workflow.state import NarrativeState
+from core.workflow.graph import (
     build_workflow,
     run_pipeline,
 )

@@ -13,8 +13,8 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-from kdsh.config import settings
-from kdsh.models import llm_complete, get_embedding
+from core.config import settings
+from core.models import llm_complete, get_embedding
 
 
 @dataclass
@@ -233,7 +233,7 @@ class HippoRAGIndex:
         Returns:
             PathResult with found paths and scores
         """
-        from kdsh.layer2.unified_retriever import PathResult
+        from core.layer2.unified_retriever import PathResult
         
         subj_id = self._normalize_entity(subject)
         obj_id = self._normalize_entity(object) if object else None

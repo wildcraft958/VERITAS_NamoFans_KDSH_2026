@@ -8,8 +8,8 @@ false than true. One hard contradiction is fatal.
 from dataclasses import dataclass, field
 from typing import Literal
 
-from kdsh.config import settings
-from kdsh.layer4.ledger import LedgerEntry
+from core.config import settings
+from core.layer4.ledger import LedgerEntry
 
 
 @dataclass

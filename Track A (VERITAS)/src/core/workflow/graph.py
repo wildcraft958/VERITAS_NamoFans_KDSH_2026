@@ -8,7 +8,7 @@ from typing import Any
 
 from langgraph.graph import StateGraph, START, END
 
-from kdsh.workflow.state import NarrativeState, create_initial_state
+from core.workflow.state import NarrativeState, create_initial_state
 
 
 # ============================================================================
@@ -21,7 +21,7 @@ def layer1_decompose(state: NarrativeState) -> dict:
     
     Uses FActScore for fact extraction and BART-MNLI for classification.
     """
-    from kdsh.layer1 import decompose_backstory
+    from core.layer1 import decompose_backstory
     
     try:
         constraint_graph = decompose_backstory(
@@ -46,7 +46,7 @@ def layer2_retrieve(state: NarrativeState) -> dict:
     """
     Layer 2: Build RAPTOR + HippoRAG indexes and retrieve evidence.
     """
-    from kdsh.layer2 import DualRetriever
+    from core.layer2 import DualRetriever
     
     try:
         retriever = DualRetriever(
@@ -75,7 +75,7 @@ def layer3_historian(state: NarrativeState) -> dict:
     """
     Layer 3a: Evidence-based verification via Historian.
     """
-    from kdsh.layer3 import Historian
+    from core.layer3 import Historian
     
     try:
         historian = Historian()
@@ -103,7 +103,7 @@ def layer3_simulator(state: NarrativeState) -> dict:
     """
     Layer 3b: Persona consistency verification via Simulator.
     """
-    from kdsh.layer3 import Simulator
+    from core.layer3 import Simulator
     
     try:
         simulator = Simulator()
@@ -144,7 +144,7 @@ def layer4_aggregate(state: NarrativeState) -> dict:
     """
     Layer 4: Aggregate evidence into structured ledger.
     """
-    from kdsh.layer4 import EvidenceLedger
+    from core.layer4 import EvidenceLedger
     
     try:
         ledger = EvidenceLedger()
@@ -172,7 +172,7 @@ def layer5_decide(state: NarrativeState) -> dict:
     """
     Layer 5: Apply conservative decision rules for final verdict.
     """
-    from kdsh.layer5 import ConservativeAdjudicator
+    from core.layer5 import ConservativeAdjudicator
     
     try:
         adjudicator = ConservativeAdjudicator()

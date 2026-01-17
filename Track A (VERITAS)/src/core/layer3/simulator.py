@@ -8,8 +8,8 @@ tests whether the novel's events are consistent with that persona.
 from dataclasses import dataclass, field
 from typing import Literal
 
-from kdsh.layer2.unified_retriever import Evidence, RetrievalResult
-from kdsh.models import llm_complete
+from core.layer2.unified_retriever import Evidence, RetrievalResult
+from core.models import llm_complete
 
 
 @dataclass

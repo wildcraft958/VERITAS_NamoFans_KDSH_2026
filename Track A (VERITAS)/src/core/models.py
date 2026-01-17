@@ -10,7 +10,7 @@ from typing import Callable
 from openai import AsyncOpenAI, OpenAI
 from tenacity import retry, stop_after_attempt, wait_exponential
 
-from kdsh.config import settings
+from core.config import settings
 
 
 def get_openai_client() -> OpenAI:

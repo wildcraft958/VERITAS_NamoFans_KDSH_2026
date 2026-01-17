@@ -4,12 +4,12 @@ LangGraph state definition for the Narrative Auditor workflow.
 
 from typing import TypedDict, Annotated, Sequence, Any
 
-from kdsh.layer1.constraint_graph import Constraint, ConstraintGraph
-from kdsh.layer2.unified_retriever import RetrievalResult
-from kdsh.layer3.historian import HistorianVerdict
-from kdsh.layer3.simulator import SimulatorVerdict, Persona
-from kdsh.layer4.ledger import LedgerEntry
-from kdsh.layer5.adjudicator import FinalVerdict
+from core.layer1.constraint_graph import Constraint, ConstraintGraph
+from core.layer2.unified_retriever import RetrievalResult
+from core.layer3.historian import HistorianVerdict
+from core.layer3.simulator import SimulatorVerdict, Persona
+from core.layer4.ledger import LedgerEntry
+from core.layer5.adjudicator import FinalVerdict
 
 
 class NarrativeState(TypedDict, total=False):

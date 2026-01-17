@@ -9,8 +9,8 @@ from enum import Enum
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from kdsh.layer1.factscore import FactExtractor
-    from kdsh.layer1.classifier import ConstraintClassifier
+    from core.layer1.factscore import FactExtractor
+    from core.layer1.classifier import ConstraintClassifier
 
 
 class ConstraintType(str, Enum):
@@ -140,8 +140,8 @@ def decompose_backstory(
         ConstraintGraph with all extracted constraints
     """
     # Import here to avoid circular imports
-    from kdsh.layer1.factscore import FactExtractor
-    from kdsh.layer1.classifier import ConstraintClassifier
+    from core.layer1.factscore import FactExtractor
+    from core.layer1.classifier import ConstraintClassifier
     
     extractor = fact_extractor or FactExtractor()
     clf = classifier or ConstraintClassifier()

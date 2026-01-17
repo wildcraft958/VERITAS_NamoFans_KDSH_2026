@@ -12,8 +12,8 @@ Provides:
 import json
 from pathlib import Path
 
-from kdsh.config import settings
-from kdsh.workflow import run_pipeline
+from core.config import settings
+from core.workflow import run_pipeline
 
 
 def process_batch(
@@ -111,36 +111,67 @@ def run_server():
         _run_simple_server()
         return
     
-    # Define schema for predictions table
-    class PredictionSchema(pw.Schema):
-        id: str
-        prediction: int
-        confidence: float
-        reasoning: str
-    
-    # Create UDF for predictions
-    @pw.udf
-    def verify_narrative(backstory: str, novel_text: str, backstory_id: str) -> dict:
-        result = run_pipeline(
-            backstory=backstory,
-            novel_text=novel_text,
-            backstory_id=backstory_id
-        )
-        return {
-            "prediction": result["prediction"],
-            "confidence": result["confidence"],
-            "reasoning": json.dumps(result.get("reasoning", []))
-        }
-    
-    # Set up REST connector
+    # Define schema for input
+    class InputSchema(pw.Schema):
+        req_id: str
+        backstory: str
+        novel_text: str
+
+    # Set up REST connector (Input)
     host = settings.pathway.host
     port = settings.pathway.port
     
     print(f"Starting Pathway server at http://{host}:{port}")
-    print("Endpoint: POST /predict")
+    print("Endpoint: POST /")
     
-    # Note: Full Pathway setup requires input source configuration
-    # This is a simplified version - see Pathway docs for full setup
+    # Read from HTTP
+    t, _ = pw.io.http.rest_connector(
+        host=host,
+        port=port,
+        schema=InputSchema,
+        methods=["POST"],
+        delete_completed_queries=True
+    )
+
+    # Define UDF for pipeline
+    @pw.udf
+    def verify_narrative(backstory: str, novel_text: str, backstory_id: str) -> dict:
+        try:
+            result = run_pipeline(
+                backstory=backstory,
+                novel_text=novel_text,
+                backstory_id=backstory_id
+            )
+            return {
+                "prediction": result["prediction"],
+                "confidence": result["confidence"],
+                "reasoning": json.dumps(result.get("reasoning", []))
+            }
+        except Exception as e:
+            return {
+                "prediction": 0,
+                "confidence": 0.0,
+                "reasoning": json.dumps([f"Error: {str(e)}"])
+            }
+
+    # Apply transformation
+    results = t.select(
+        req_id=t.req_id,
+        analysis=verify_narrative(t.backstory, t.novel_text, t.req_id)
+    )
+    
+    # Flatten results
+    final_table = results.select(
+        req_id=results.req_id,
+        prediction=results.analysis["prediction"],
+        confidence=results.analysis["confidence"],
+        reasoning=results.analysis["reasoning"]
+    )
+    
+    # Output to CSV for verification (Real-time update)
+    # in a real server you might use a response topic or just log it, 
+    # but for this e2e test we want to see the output file.
+    pw.io.csv.write(final_table, "pathway_output.csv")
     
     pw.run()
 

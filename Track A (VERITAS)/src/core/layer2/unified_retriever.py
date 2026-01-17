@@ -5,7 +5,7 @@ Unified dual retriever combining RAPTOR and HippoRAG results.
 from dataclasses import dataclass, field
 from typing import Any
 
-from kdsh.layer1.constraint_graph import Constraint, ConstraintType
+from core.layer1.constraint_graph import Constraint, ConstraintType
 
 
 @dataclass
@@ -83,8 +83,8 @@ class DualRetriever:
             novel_text: Full novel text
             novel_id: Identifier for caching
         """
-        from kdsh.layer2.raptor_index import RAPTORIndex
-        from kdsh.layer2.hipporag_index import HippoRAGIndex
+        from core.layer2.raptor_index import RAPTORIndex
+        from core.layer2.hipporag_index import HippoRAGIndex
         
         self.novel_id = novel_id
         self.raptor: RAPTORIndex | None = None
@@ -95,8 +95,8 @@ class DualRetriever:
     
     def build(self, novel_text: str, novel_id: str = "default") -> None:
         """Build both indexes from novel text."""
-        from kdsh.layer2.raptor_index import RAPTORIndex
-        from kdsh.layer2.hipporag_index import HippoRAGIndex
+        from core.layer2.raptor_index import RAPTORIndex
+        from core.layer2.hipporag_index import HippoRAGIndex
         
         self.novel_id = novel_id
         self.raptor = RAPTORIndex(novel_text)

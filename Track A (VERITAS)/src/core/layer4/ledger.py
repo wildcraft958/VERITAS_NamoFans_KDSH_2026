@@ -8,9 +8,9 @@ JSON ledger for each constraint.
 from dataclasses import dataclass, field
 from typing import Literal
 
-from kdsh.layer1.constraint_graph import Constraint
-from kdsh.layer3.historian import HistorianVerdict, ClassifiedEvidence
-from kdsh.layer3.simulator import SimulatorVerdict
+from core.layer1.constraint_graph import Constraint
+from core.layer3.historian import HistorianVerdict, ClassifiedEvidence
+from core.layer3.simulator import SimulatorVerdict
 
 
 @dataclass

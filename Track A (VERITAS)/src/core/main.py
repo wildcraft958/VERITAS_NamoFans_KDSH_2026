@@ -4,9 +4,9 @@ KDSH 2026: Constraint-Driven Narrative Auditor
 Main entry point for the 5-layer pipeline.
 
 Usage:
-    python -m kdsh.main --backstory <file> --novel <file> [--output <file>]
-    python -m kdsh.main --batch <csv> --novels-dir <dir> [--output <csv>]
-    python -m kdsh.main --serve
+    python -m core.main --backstory <file> --novel <file> [--output <file>]
+    python -m core.main --batch <csv> --novels-dir <dir> [--output <csv>]
+    python -m core.main --serve
 """
 
 import argparse
@@ -14,8 +14,8 @@ import json
 import sys
 from pathlib import Path
 
-from kdsh.workflow import run_pipeline
-from kdsh.api.server import process_batch, run_server
+from core.workflow import run_pipeline
+from core.api.server import process_batch, run_server
 
 
 def main():
@@ -26,13 +26,13 @@ def main():
         epilog="""
 Examples:
   # Single prediction
-  python -m kdsh.main --backstory story.txt --novel novel.txt
+  python -m core.main --backstory story.txt --novel novel.txt
   
   # Batch processing
-  python -m kdsh.main --batch train.csv --novels-dir Books/ --output results.csv
+  python -m core.main --batch train.csv --novels-dir Books/ --output results.csv
   
   # Start API server
-  python -m kdsh.main --serve
+  python -m core.main --serve
         """
     )
     

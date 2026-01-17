@@ -28,7 +28,7 @@ class TestEndToEndPipeline:
         logger.info("=" * 60)
         
         # Mock the workflow
-        with patch('kdsh.workflow.run_pipeline') as mock_pipeline:
+        with patch('core.workflow.run_pipeline') as mock_pipeline:
             mock_pipeline.return_value = {
                 "prediction": 1,
                 "confidence": 0.85,
@@ -44,7 +44,7 @@ class TestEndToEndPipeline:
                 )
             }
             
-            from kdsh.workflow import run_pipeline
+            from core.workflow import run_pipeline
             
             result = run_pipeline(
                 backstory=sample_backstory_consistent,
@@ -74,7 +74,7 @@ class TestEndToEndPipeline:
         logger.info("INTEGRATION TEST: Contradictory Backstory")
         logger.info("=" * 60)
         
-        with patch('kdsh.workflow.run_pipeline') as mock_pipeline:
+        with patch('core.workflow.run_pipeline') as mock_pipeline:
             mock_pipeline.return_value = {
                 "prediction": 0,
                 "confidence": 0.92,
@@ -94,7 +94,7 @@ class TestEndToEndPipeline:
                 )
             }
             
-            from kdsh.workflow import run_pipeline
+            from core.workflow import run_pipeline
             
             result = run_pipeline(
                 backstory=sample_backstory_contradictory,
@@ -119,7 +119,7 @@ class TestEndToEndPipeline:
         logger.info("INTEGRATION TEST: Error Handling")
         logger.info("=" * 60)
         
-        with patch('kdsh.workflow.run_pipeline') as mock_pipeline:
+        with patch('core.workflow.run_pipeline') as mock_pipeline:
             mock_pipeline.return_value = {
                 "prediction": 0,
                 "confidence": 0.0,
@@ -128,7 +128,7 @@ class TestEndToEndPipeline:
                 "verdict": None
             }
             
-            from kdsh.workflow import run_pipeline
+            from core.workflow import run_pipeline
             
             result = run_pipeline(
                 backstory="",
@@ -149,7 +149,7 @@ class TestEndToEndPipeline:
         logger.info("=" * 60)
         
         # Mock the workflow graph execution
-        with patch('kdsh.workflow.graph.build_workflow') as mock_build:
+        with patch('core.workflow.graph.build_workflow') as mock_build:
             mock_workflow = MagicMock()
             mock_build.return_value = mock_workflow
             
@@ -167,7 +167,7 @@ class TestEndToEndPipeline:
                 "final_verdict": MagicMock(prediction=1)
             }
             
-            from kdsh.workflow.graph import build_workflow
+            from core.workflow.graph import build_workflow
             
             workflow = build_workflow()
             final_state = workflow.invoke({

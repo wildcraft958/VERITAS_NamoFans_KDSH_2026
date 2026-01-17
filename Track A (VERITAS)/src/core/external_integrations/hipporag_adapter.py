@@ -195,7 +195,7 @@ class HippoRAGKnowledgeGraph:
             Tuple of (entities, triples)
         """
         try:
-            from kdsh.models import llm_complete
+            from core.models import llm_complete
             
             # HippoRAG-style extraction prompt
             prompt = f"""Extract entities and relationships from the following text.
@@ -263,7 +263,7 @@ Extract ALL entities and relationships. Output ONLY valid JSON:"""
     def _get_embedding(self, text: str) -> List[float]:
         """Get embedding for text."""
         try:
-            from kdsh.models import get_embedding
+            from core.models import get_embedding
             return get_embedding(text)
         except:
             return [0.0] * 1536

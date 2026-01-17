@@ -166,7 +166,7 @@ class FActScoreAtomicFactGenerator:
         # For now, use a simplified approach that mirrors FActScore methodology
         # In production, this would call the actual LLM with FActScore prompts
         
-        from kdsh.models import llm_complete
+        from core.models import llm_complete
         
         # FActScore-style prompt
         prompt = f"""Please breakdown the following sentence into independent facts. Each fact should be a single, atomic statement.

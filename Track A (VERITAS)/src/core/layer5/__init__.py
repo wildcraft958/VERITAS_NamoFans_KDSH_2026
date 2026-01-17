@@ -1,6 +1,6 @@
 """Layer 5: Conservative Adjudication."""
 
-from kdsh.layer5.adjudicator import (
+from core.layer5.adjudicator import (
     FinalVerdict,
     ConservativeAdjudicator,
 )

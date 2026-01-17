@@ -127,7 +127,7 @@ def mock_llm_complete():
         else:
             return "Mock LLM response"
     
-    with patch('kdsh.models.llm_complete', side_effect=_mock_llm):
+    with patch('core.models.llm_complete', side_effect=_mock_llm):
         yield _mock_llm
 
 
@@ -138,5 +138,5 @@ def mock_embedding():
         logger.info(f"Mock embedding called for text length: {len(text)}")
         return [0.1] * 1536
     
-    with patch('kdsh.models.get_embedding', side_effect=_mock_embed):
+    with patch('core.models.get_embedding', side_effect=_mock_embed):
         yield _mock_embed

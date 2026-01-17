@@ -13,8 +13,8 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-from kdsh.config import settings
-from kdsh.models import llm_complete, get_embedding
+from core.config import settings
+from core.models import llm_complete, get_embedding
 
 
 @dataclass

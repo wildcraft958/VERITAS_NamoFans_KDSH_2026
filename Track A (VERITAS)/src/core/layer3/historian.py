@@ -9,9 +9,9 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import Literal
 
-from kdsh.layer1.constraint_graph import Constraint
-from kdsh.layer2.unified_retriever import Evidence, RetrievalResult
-from kdsh.models import llm_complete
+from core.layer1.constraint_graph import Constraint
+from core.layer2.unified_retriever import Evidence, RetrievalResult
+from core.models import llm_complete
 
 
 class EvidenceStatus(str, Enum):

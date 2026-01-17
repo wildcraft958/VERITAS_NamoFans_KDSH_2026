@@ -1,8 +1,8 @@
 """Layer 2: Dual Retrieval Indexing."""
 
-from kdsh.layer2.raptor_index import RAPTORIndex
-from kdsh.layer2.hipporag_index import HippoRAGIndex
-from kdsh.layer2.unified_retriever import (
+from core.layer2.raptor_index import RAPTORIndex
+from core.layer2.hipporag_index import HippoRAGIndex
+from core.layer2.unified_retriever import (
     DualRetriever,
     Evidence,
     PathResult,

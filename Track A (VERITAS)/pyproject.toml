@@ -58,7 +58,7 @@ dev = [
 ]
 
 [project.scripts]
-kdsh-auditor = "kdsh.main:main"
+kdsh-auditor = "core.main:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

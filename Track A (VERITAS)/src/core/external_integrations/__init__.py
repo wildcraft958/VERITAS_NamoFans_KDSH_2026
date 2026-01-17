@@ -9,16 +9,16 @@ These integrations ensure that our pipeline uses the actual implementations
 from the original research codebases.
 """
 
-from kdsh.external_integrations.factscore_adapter import (
+from core.external_integrations.factscore_adapter import (
     FActScoreAtomicFactGenerator,
     extract_atomic_facts
 )
-from kdsh.external_integrations.raptor_adapter import (
+from core.external_integrations.raptor_adapter import (
     RAPTORTreeBuilder,
     build_raptor_tree,
     RAPTORTreeRetriever
 )
-from kdsh.external_integrations.hipporag_adapter import (
+from core.external_integrations.hipporag_adapter import (
     HippoRAGKnowledgeGraph,
     build_hipporag_index
 )
